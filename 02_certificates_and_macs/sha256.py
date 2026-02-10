@@ -3,6 +3,7 @@ Simple, pure Python implementation of SHA-256.
 Adapted from the pseudocode given at https://en.wikipedia.org/wiki/SHA-2#Pseudocode
 """
 
+from hmac import digest
 import struct
 
 
@@ -23,8 +24,14 @@ def sha256(message: bytes) -> bytes:
     # initial value of the internal state
     internal_state = b'j\t\xe6g\xbbg\xae\x85<n\xf3r\xa5O\xf5:Q\x0eR\x7f\x9b\x05h\x8c\x1f\x83\xd9\xab[\xe0\xcd\x19'
 
-    # TODO implement this
-    pass
+    hash = internal_state
+    # pad the message
+    padded_message = message + build_padding(len(message))
+    # split the message into 512 bit chunks and process each chunk
+    for chunk in split_chunks(padded_message):
+        hash = compress(chunk, hash)
+
+    return hash
 
 
 def sha256_extend(given_hash: bytes, prefix_length: int, message_suffix: bytes) -> bytes:
@@ -42,8 +49,16 @@ def sha256_extend(given_hash: bytes, prefix_length: int, message_suffix: bytes) 
     assert len(given_hash) == 32
     assert prefix_length % 64 == 0
 
-    # TODO implement this
-    pass
+    # build the padded message suffix
+    padded_message_suffix = message_suffix + build_padding(prefix_length + len(message_suffix))
+    # split the padded message suffix into 512 bit chunks
+    chunks = split_chunks(padded_message_suffix)
+    # apply the compression function to the given hash and the chunks of the padded message suffix
+    hash = given_hash
+    for chunk in chunks:
+        hash = compress(chunk, hash)
+
+    return hash
 
 
 def padded_size(message_len: int) -> int:

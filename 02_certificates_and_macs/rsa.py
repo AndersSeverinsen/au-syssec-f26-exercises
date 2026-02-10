@@ -1,5 +1,4 @@
 import sys
-import Crypto.Util.number
 from Crypto.Util.number import getPrime, GCD, inverse
 
 
