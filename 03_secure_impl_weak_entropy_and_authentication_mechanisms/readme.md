@@ -21,8 +21,8 @@ The algorithm for exponentiation evaluates the following recurrence:
 $$
 x^y =
 \begin{cases}
-1, & \text{if } y = 0, \\[6pt]
-\left(x^2\right)^{y/2}, & \text{if } y \text{ is even}, \\[6pt]
+1, & \text{if } y = 0, \\
+\left(x^2\right)^{y/2}, & \text{if } y \text{ is even}, \\
 x \cdot \left(x^{y-1}\right), & \text{if } y \text{ is odd}.
 \end{cases}
 $$
