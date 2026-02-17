@@ -2,3 +2,4 @@
 *.bin
 sign_0.txt
 sign_1.txt
+*/__pycache__
