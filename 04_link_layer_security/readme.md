@@ -104,10 +104,42 @@ Because not all interfaces support monitor mode and this functionality is typica
 
 **What you should do:**\
 Find a dictionary of common words in English to run the attack, and to discover the link layer address (MAC / BSSID) of the access point.
+
+- NETSEC    AC:84:C6:B8:7D:6C
+- SYSSEC    98:DA:C4:28:48:06
+
 With these informations, you can then run:
 
 ```
 aircrack-ng -w <dictionary_file> -b <link_layer_address> <packet_capture>
+```
+
+```bash
+$ aircrack-ng -w words.txt -b "98:DA:C4:28:48:06" syssec-handshake.cap
+Reading packets, please wait...
+Opening syssec-handshake.cap
+Read 851 packets.
+
+1 potential targets
+
+                               Aircrack-ng 1.7 
+
+      [00:01:06] 463179/466550 keys tested (7119.18 k/s) 
+
+      Time left: 0 seconds                                      99.28%
+
+                           KEY FOUND! [ obscurity ]
+
+
+      Master Key     : F2 9E 72 DF 3A 60 61 0D 5E 45 24 4C C9 4A 4B 46 
+                       02 1C 8F FC 63 2C 04 86 B2 45 9D D8 B5 07 77 55 
+
+      Transient Key  : 3E B1 53 B1 0B 78 EB 3B 24 BD 13 21 FE 94 0F 57 
+                       29 D0 AD A5 72 7B 9F F3 FA 6B 47 E3 38 6B 7E BE 
+                       84 AE EB 4D 0F 79 92 5A B9 C3 AB AA 25 7C 5E F1 
+                       10 95 CA 01 02 53 9A F0 A3 2D 3A 82 0C 77 7B 6E 
+
+      EAPOL HMAC     : 1A D0 38 C2 05 7C 58 E1 12 EE E7 34 C4 C1 23 4C 
 ```
 
 **The goal:**\
@@ -142,6 +174,8 @@ Think of the Virtual Machine as a malicious machine in a wireless network. Altho
 2. We can perform more directed sniffing by restricting to a hostname. The _Options_ item under the _Capture_ menu accepts a capture filter that allows one to specify fine-grained traffic capturing rules - *why would you look at garbage, when you can throw it out?* \
 To show how that works, we use the networks SYSSEC and NETSEC, that each run an HTTP server. This server has the following open IP-address ranges: `192.168.1.2--79` (SYSSEC) and `192.168.2.2--79` (NETSET). \
 Pick one IP address in the range at random and start a new Wireshark capture with `host 192.168.X.Y` as the capture filter (replace `X` with 1 for SYSSEC or 2 for NETSEC, and replace `Y` with the random value you chose between 2 and 79).
+
+- Filter: ip.addr >= 192.168.1.2 && ip.addr <= 192.168.1.79
 
 1. Now access the IP address on the VM machine by typing `http://192.168.X.Y/` in your browser, and you should be able to see the plaintext HTTP traffic in Wireshark. If your VM is able to capture traffic from the host, accessing the website from the host will also show traffic in the VM.
 
