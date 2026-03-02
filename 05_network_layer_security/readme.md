@@ -121,8 +121,11 @@ The code for the server portion is provided for reference in the repository insi
 
 In order to achieve your goal, generate an RSA key pair in PEM format and insert the public key marked as TODO in the file `mitm_pk.py`. You can generate the key pair by running the following commands:
 
+```
 $ openssl genrsa -out private.pem 2048
 $ openssl rsa -in private.pem -outform PEM -pubout -out public.pem
+```
+
 Now restart mitmproxy with the command below:
 
 $ mitmproxy --showhost -s mitm_pk.py
