@@ -108,7 +108,7 @@ Our simple website has a login capability, for which the credentials are `admin`
 Now access the website through your mobile device with the right credentials and login. You should now be able to access the `View Secrets` and `Upload Secrets` functionalities.
 
 The `View Secrets` functionality will just show you some secret text, which should be visible in `mitmproxy` as well.
-We will use the acripting capabilities of `mitmproxy` to change what the *victim* receives and sees.
+We will use the scripting capabilities of `mitmproxy` to change what the *victim* receives and sees.
 Use the provided file `mitm.py` as a starting point and restart `mitmproxy` with the command below:
 
 ```
