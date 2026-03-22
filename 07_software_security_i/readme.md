@@ -283,7 +283,7 @@ If the check would pass, then the function `win` would be executed.
 To feed raw bytes to the program you can use, e.g., `python` or `echo` and
 connect its output with a pipe to the program's input:
 ```
-python -c "import os; os.write(1, b'foobar_\xc0\xff\xee')" | ./overflow1
+python -c "import os; os.write(1, b'foobar_BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB\xc0\xff\xee')" | ./overflow1
 echo -en "foobar_\xc0\xff\xee" | ./overflow1
 ```
 

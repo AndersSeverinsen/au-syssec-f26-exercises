@@ -15,7 +15,7 @@ toctou: toctou.c
 
 flag.txt:
 	echo "flag{success!}" > $@
-	sudo chown root:root $@
+	sudo chown root:wheel $@
 	sudo chmod go-rwx $@
 
 overflow1: overflow1.c

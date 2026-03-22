@@ -52,6 +52,8 @@ int main(int argc, char** argv) {
         exit(1);
     }
 
+    sleep(5);
+
     // open the file
     int file_descriptor = open(file_name, O_RDONLY);
     if (file_descriptor == -1) {
