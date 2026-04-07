@@ -16,7 +16,7 @@ void hello(void)
     if (strchr(name, '%') && strchr(name, 'n'))
         exit(1);
     printf("Hello ");
-    printf(name);
+    printf("%s",name);
 }
 
 void login(void)
