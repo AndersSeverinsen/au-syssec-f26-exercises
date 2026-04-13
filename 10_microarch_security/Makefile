@@ -10,4 +10,4 @@ all: cache-time flush-reload spectre out-of-order
 	$(CC) -o $@ $(CFLAGS) $^
 
 clean:
-	rm -f address address_asan thread thread_tsan undefined undefined_ubsan
+	rm -f cache-time flush-reload spectre out-of-order
