@@ -45,6 +45,33 @@ access of `array[3*4096]` and `array[7*4096]` faster than that of the other elem
 run the program at least 10 times and find a _threshold_ that can be used to distinguish these two types of memory access: accessing data from the cache (*hit*)
 versus accessing data from the main memory (*cache hit*). This threshold is important for the rest of the tasks in this lab.
 
+```bash
+$ ./cache-time
+Access time for small_array[0]: 2149 CPU cycles
+Access time for small_array[1]: 122 CPU cycles
+Access time for small_array[2]: 114 CPU cycles
+Access time for small_array[3]: 110 CPU cycles
+Access time for small_array[4]: 114 CPU cycles
+Access time for small_array[5]: 130 CPU cycles
+Access time for small_array[6]: 126 CPU cycles
+Access time for small_array[7]: 110 CPU cycles
+Access time for small_array[8]: 117 CPU cycles
+Access time for small_array[9]: 110 CPU cycles
+Access time for array[0*4096]: 394 CPU cycles
+Access time for array[1*4096]: 455 CPU cycles
+Access time for array[2*4096]: 492 CPU cycles
+Access time for array[3*4096]: 154 CPU cycles
+Access time for array[4*4096]: 503 CPU cycles
+Access time for array[5*4096]: 1678 CPU cycles
+Access time for array[6*4096]: 110 CPU cycles
+Access time for array[7*4096]: 171 CPU cycles
+Access time for array[8*4096]: 484 CPU cycles
+Access time for array[9*4096]: 455 CPU cycles
+$ ./flush-reload
+array[94*4096 + 1024] is in cache.
+The Secret = 94.
+```
+
 ## Exercise 2: FLUSH+RELOAD
 
 The objective of this task is to use the cache-based side channel to extract a secret value used by the victim function.
