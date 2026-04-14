@@ -14,6 +14,16 @@ Before you start, use this [script](https://github.com/speed47/spectre-meltdown-
 That will dictate if some of the vulnerabilities below are exploitable, such as Spectre.
 The instructor will also provide an alternative environment with unpatched vulnerabilities to facilitate the exercise.
 
+```bash
+$ chmod +x spectre-meltdown-checker.sh
+$ sudo ./spectre-meltdown-checker.sh
+Spectre and Meltdown mitigation detection tool v26.26.0404682
+
+You're running under the Darwin OS, but this script
+only works under Linux and some BSD systems, sorry.
+Please read the README and FAQ for more information.
+```
+
 ## Exercise 1: Cache-based side-channel attacks
 
 The CPU cache is a hardware component that reduces the
@@ -123,4 +133,3 @@ You may observe that when running the revised code, the position with the highes
 Please figure out why, and fix the code so the actual secret value will be printed out. The sleep time also affects the success rate of the attack.
 Please try several other values, and see how they affect the accuracy.
 Finally, extend the code to print out the entire string using the Spectre attack.
-
